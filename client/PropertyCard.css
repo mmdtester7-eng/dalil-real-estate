@@ -1,0 +1,38 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './PropertyCard.css';
+
+function PropertyCard({ property }) {
+  return (
+    <div className="property-card">
+      {property.images && property.images.length > 0 && (
+        <img src={property.images[0].url} alt={property.title} className="property-image" />
+      )}
+      
+      <div className="property-content">
+        <h3>{property.title}</h3>
+        
+        <div className="property-details">
+          <span>📍 {property.area}</span>
+          <span>🛏️ {property.rooms} غرفة</span>
+          <span>🚿 {property.bathrooms} حمام</span>
+        </div>
+
+        <div className="property-price">
+          <h2>₪ {property.price.toLocaleString()}</h2>
+        </div>
+
+        <div className="property-actions">
+          <Link to={`/properties/${property._id}`} className="btn btn-primary">
+            عرض التفاصيل
+          </Link>
+          <a href={property.whatsappLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+            💬 واتساب
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PropertyCard;
